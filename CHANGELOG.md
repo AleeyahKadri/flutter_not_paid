@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Minimum Dart SDK version bumped up to 3.5.
+- Minimum Flutter SDK version bumped up to 3.7.
+
 ## 1.0.1
 
 - Allow custom before & after deadline messages.
