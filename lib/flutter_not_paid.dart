@@ -31,6 +31,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-library flutter_not_paid;
+library;
 
 export 'src/flutter_not_paid.dart';

@@ -72,7 +72,7 @@ class NotPaid extends StatefulWidget {
 
   /// Default constructor
   const NotPaid({
-    Key? key,
+    super.key,
     this.dueDate,
     this.directionality = TextDirection.ltr,
     this.duration = const Duration(seconds: 5),
@@ -82,8 +82,7 @@ class NotPaid extends StatefulWidget {
     this.enabled = true,
     this.deadlineReachedMessage = "You've reached the deadline!",
     this.deadlineMessageBuilder,
-  })  : deadline = deadline ?? 0,
-        super(key: key);
+  }) : deadline = deadline ?? 0;
 
   @override
   State<NotPaid> createState() => _NotPaidState();
@@ -107,7 +106,7 @@ class _NotPaidState extends State<NotPaid> {
     return Directionality(
       textDirection: widget.directionality,
       child: MediaQuery(
-        data: MediaQueryData.fromWindow(WidgetsBinding.instance.window),
+        data: MediaQueryData.fromView(View.of(context)),
         child: Stack(
           children: [
             Opacity(

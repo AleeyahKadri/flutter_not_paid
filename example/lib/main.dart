@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_not_paid/flutter_not_paid.dart';
 
@@ -6,16 +8,21 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return NotPaid(
-      deadline: 8,
+      deadline: 20,
       dueDate: DateTime.now().subtract(Duration(days: 6)),
       showBanner: true,
       child: MaterialApp(
         title: 'Flutter Not Paid Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          colorScheme: ColorScheme.fromSeed(
+            brightness: Brightness.light,
+            seedColor: Colors.blue,
+          ),
         ),
         home: MyHomePage(title: 'Flutter Not Paid Home Page'),
       ),
@@ -24,19 +31,19 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    print('button clicked');
+    log('button clicked');
     setState(() {
       _counter++;
     });
@@ -46,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         title: Text(widget.title),
       ),
       body: Center(
@@ -57,13 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
