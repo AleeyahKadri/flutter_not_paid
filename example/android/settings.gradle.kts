@@ -6,7 +6,7 @@ val localPropertiesFile = File(rootProject.projectDir, "local.properties")
 val properties = Properties()
 
 if (!localPropertiesFile.exists()) {
-    throw AssertionError("local.properties file does not exist")
+    throw GradleException("local.properties file does not exist")
 }
 
 localPropertiesFile.inputStream().use { stream ->
@@ -14,6 +14,6 @@ localPropertiesFile.inputStream().use { stream ->
 }
 
 val flutterSdkPath = properties.getProperty("flutter.sdk")
-    ?: throw AssertionError("flutter.sdk not set in local.properties")
+    ?: throw GradleException("flutter.sdk not set in local.properties")
 
 apply(from = "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle")

@@ -55,8 +55,14 @@ android {
 // Flutter extension configuration
 // The flutter extension is registered by flutter.gradle and we access it dynamically
 val flutter = project.extensions.getByName("flutter")
-val sourceMethod = flutter.javaClass.getMethod("source", String::class.java)
-sourceMethod.invoke(flutter, "../..")
+try {
+    val sourceMethod = flutter.javaClass.getMethod("source", String::class.java)
+    sourceMethod.invoke(flutter, "../..")
+} catch (e: NoSuchMethodException) {
+    throw GradleException("Flutter extension does not have source method: ${e.message}")
+} catch (e: IllegalAccessException) {
+    throw GradleException("Cannot access Flutter extension source method: ${e.message}")
+}
 
 dependencies {
     val kotlinVersion: String by rootProject.extra
